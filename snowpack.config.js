@@ -4,10 +4,16 @@ module.exports = {
     public: {url: '/', static: true},
     src: {url: '/dist'},
   },
+  alias: {
+    "react": "preact/compat",
+    "react-dom": "preact/compat",
+  },
   plugins: [
     '@snowpack/plugin-dotenv',
     '@snowpack/plugin-typescript',
-    '@prefresh/snowpack',
+    '@snowpack/plugin-postcss',
+    //'@prefresh/snowpack',
+    ['@snowpack/plugin-webpack', {}],
   ],
   routes: [
     /* Enable an SPA Fallback in development: */
@@ -21,7 +27,8 @@ module.exports = {
     /* ... */
   },
   devOptions: {
-    /* ... */
+    open: 'none',
+    output: 'stream',
   },
   buildOptions: {
     /* ... */

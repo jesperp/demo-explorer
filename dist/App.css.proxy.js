@@ -1,0 +1,10 @@
+// [snowpack] add styles to the page (skip if no document exists)
+if (typeof document !== 'undefined') {
+  const code = "POSTCSS.CONFIG.JS\n[role=\"treeitem\"][aria-expanded=\"false\"] ul {\n  display: none;\n}\n\nul[role=\"group\"] li {\n  margin-left: 0.5rem;\n}\n\n[role=\"treeitem\"][tabindex=\"0\"] {\n  --tw-bg-opacity: 1;\n  background-color: rgba(239, 246, 255, var(--tw-bg-opacity));\n}\n\n:focus {\n  outline: 0;\n  --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);\n  --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);\n  box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);\n  --tw-ring-opacity: 1;\n  --tw-ring-color: rgba(96, 165, 250, var(--tw-ring-opacity));\n  border-radius: 0.375rem;\n}\n\n.app {\n  height: 100vh;\n}\n\nmain {\n  min-width: 320px;\n  max-width: 700px;\n  min-height: 600px;\n}\n\nmain a {\n  --tw-text-opacity: 1;\n  color: rgba(59, 130, 246, var(--tw-text-opacity));\n  text-decoration: underline;\n}\n\n.slash-separated > :not(:last-child)::after {\n  content: \" /\";\n}\n\nmain img {\n  -webkit-animation-name: fade-in;\n          animation-name: fade-in;\n  -webkit-animation-duration: 400ms;\n          animation-duration: 400ms;\n}\n\narticle li {\n  list-style-type: disc;\n  list-style-position: inside;\n  list-style-type: disc;\n}\n\n@-webkit-keyframes fade-in {\n  from { opacity: 0;\n  }\n\n  to { opacity: 1;\n  }\n}\n\n@keyframes fade-in {\n  from { opacity: 0;\n  }\n\n  to { opacity: 1;\n  }\n}";
+
+  const styleEl = document.createElement("style");
+  const codeEl = document.createTextNode(code);
+  styleEl.type = 'text/css';
+  styleEl.appendChild(codeEl);
+  document.head.appendChild(styleEl);
+}

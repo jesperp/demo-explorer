@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "mobx-react-lite": "./mobx-react-lite.js",
+    "mobx-state-tree": "./mobx-state-tree.js",
+    "preact": "./preact.js",
+    "preact/devtools": "./preact/devtools.js",
+    "preact/hooks": "./preact/hooks.js"
+  }
+}

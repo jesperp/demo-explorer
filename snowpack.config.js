@@ -32,5 +32,6 @@ module.exports = {
   },
   buildOptions: {
     /* ... */
+    "baseUrl": "/demo-explorer"
   },
 };

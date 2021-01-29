@@ -1,5 +1,5 @@
 import type { IAnyModelType } from 'mobx-state-tree'
-import { getParentOfType, getRoot, getPathParts, getType, types, Instance } from "mobx-state-tree";
+import { getParentOfType, getRoot, getType, types, Instance } from "mobx-state-tree";
 
 
 export enum FileType {
@@ -22,6 +22,7 @@ const NodeBase = types
   .views(
     self => ({
       get path() {
+        // Get a path of breadcrumbs
         const path = []
         let current = self, parent
 
@@ -94,6 +95,8 @@ export interface IExplorer extends Instance<typeof Explorer> {}
 export const isFile = (node: IFile | IFolder): node is IFile => getType(node).name === "File"
 export const isFolder = (node: IFile | IFolder): node is IFolder => getType(node).name === "Folder"
 
+
+// Explorer of a faked file system
 export const explorer = Explorer.create({
   label: "Explore",
   nodes: [

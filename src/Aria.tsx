@@ -12,6 +12,10 @@ interface Props {
 }
 
 
+//
+// An implementation of roving tabindex as described at W3
+// https://www.w3.org/TR/wai-aria-practices-1.1/#kbd_roving_tabindex
+//
 export const AriaTreeItem:FunctionComponent<Props> = (props) => {
   const self = useRef<HTMLLIElement>(null)
 

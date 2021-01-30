@@ -682,6 +682,10 @@ video {
   padding-left: 0.25rem;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -881,6 +885,11 @@ video {
 
   .sm\:justify-center {
     justify-content: center;
+  }
+
+  .sm\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
   }
 
   .sm\:p-10 {

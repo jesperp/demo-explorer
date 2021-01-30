@@ -78,22 +78,16 @@ const Content = observer(({explorer}) => {
   }, "Tailwind"), " for styling")), /* @__PURE__ */ h("div", {
     className: "flex justify-center"
   }, /* @__PURE__ */ h("svg", {
-    id: "emoji",
+    id: "waving-hand-emoji",
     width: "200",
     height: "200",
     viewBox: "0 0 72 72"
   }, /* @__PURE__ */ h("g", {
-    id: "hair"
-  }), /* @__PURE__ */ h("g", {
     id: "skin"
   }, /* @__PURE__ */ h("path", {
     fill: "#fadcbc",
     d: "M18.6575,19.2409c-0.9683-1.6927-3.1256-2.2799-4.8183-1.3115c-1.6927,0.9684-2.2799,3.1256-1.3115,4.8183 c0.1552,0.2714,0.3458,0.5209,0.5667,0.742l11.5324,15.0998l2.6883,3.3878l-7.8906-10.3314 c-0.9683-1.6927-3.1256-2.2799-4.8183-1.3115s-2.2799,3.1256-1.3115,4.8183c0.1552,0.2714,0.3458,0.5209,0.5667,0.7421 L21.752,46.226l6.2707,7.899c5.467,6.2731,14.5147,5.9306,20.7863,0.465c3.6045-3.1684,5.9226-7.5482,6.5154-12.3105 c0.3858-4.2326,0.807-15.301,0.807-15.301c-0.1826-2.6008-3.1353-4.5234-3.5158-3.1802l-4.8939,9.7575l-3.3657-4.2224 l3.3657,4.2224l-3.3657-4.2224L30.8909,12.1248c-0.9683-1.6927-3.1256-2.2799-4.8183-1.3115s-2.2799,3.1256-1.3115,4.8183 c0.1552,0.2714,0.3458,0.5209,0.5667,0.742l4.2488,5.5631L36,30.4167L22.581,12.7366c-0.9683-1.6927-3.1256-2.2799-4.8183-1.3115 s-2.2799,3.1256-1.3116,4.8183c0.1552,0.2714,0.3458,0.5209,0.5667,0.7421L31.6894,36"
   })), /* @__PURE__ */ h("g", {
-    id: "skin-shadow"
-  }), /* @__PURE__ */ h("g", {
-    id: "color"
-  }), /* @__PURE__ */ h("g", {
     id: "line"
   }, /* @__PURE__ */ h("path", {
     fill: "none",
@@ -136,11 +130,18 @@ const Content = observer(({explorer}) => {
     d: "M49.8731,21.6727c0-5.5959-3.8094-10.1241-8.5171-10.1241"
   }))))));
 });
+function toggleNavigation(e) {
+  e.stopPropagation();
+  const nav = document.querySelector("nav");
+  nav?.classList.toggle("hidden");
+}
 const App = observer(({explorer}) => /* @__PURE__ */ h("div", {
+  onClick: (e) => document.getElementById("burger-menu") && !document.querySelector("nav")?.classList.contains("hidden") && toggleNavigation(e),
   className: "relative flex sm:items-start sm:justify-center sm:p-10 sm:pt-14 sm:space-x-6 app"
 }, /* @__PURE__ */ h("button", {
-  onClick: (e) => e.currentTarget?.nextElementSibling?.classList.toggle("hidden"),
-  className: "absolute top-0 right-0 z-50 block float-right p-3 m-3 bg-green-100 rounded-full sm:hidden"
+  id: "burger-menu",
+  onClick: toggleNavigation,
+  className: "fixed top-0 right-0 z-50 block float-right p-3 m-3 bg-green-100 rounded-full sm:hidden"
 }, /* @__PURE__ */ h("svg", {
   width: "24",
   height: "24",
@@ -153,7 +154,7 @@ const App = observer(({explorer}) => /* @__PURE__ */ h("div", {
   strokeWidth: 2,
   d: "M4 6h16M4 12h16M4 18h16"
 }))), /* @__PURE__ */ h("nav", {
-  className: "absolute z-30 hidden w-48 px-2 py-3 bg-white shadow-xl select-none ring-gray-300 ring-1 sm:ring-0 sm:block sm:shadow-md right-6 top-16 sm:static rounded-md"
+  className: "fixed z-30 hidden w-48 px-2 py-3 text-lg bg-white shadow-xl select-none sm:text-base ring-gray-300 ring-1 sm:ring-0 sm:block sm:shadow-md right-6 top-16 sm:static rounded-md"
 }, /* @__PURE__ */ h("h2", {
   className: "hidden pl-1 font-bold sm:block"
 }, explorer.label), /* @__PURE__ */ h(AriaTree, null, explorer.nodes.map(renderNode(explorer.nodes.length)))), /* @__PURE__ */ h(Content, {

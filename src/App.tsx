@@ -124,13 +124,29 @@ type AppProps = {
   explorer: IExplorer
 }
 
-const App:FunctionComponent<AppProps> = observer( ({ explorer }) =>
-  <div className="relative flex sm:items-start sm:justify-center sm:p-10 sm:pt-14 sm:space-x-6 app">
+function toggleNavigation(e: MouseEvent) {
+  e.stopPropagation()
+  const nav = document.querySelector("nav")
+  nav?.classList.toggle("hidden")
+}
 
-    {/* Burger menu, this will toggle the <nav> on mobile*/}
+const App:FunctionComponent<AppProps> = observer( ({ explorer }) =>
+  <div
+    onClick={
+      e =>
+        // When clicking outside menu, toggle navigation if burger menu is open
+        document.getElementById("burger-menu") &&
+        !document.querySelector("nav")?.classList.contains("hidden") &&
+        toggleNavigation(e)
+    }
+    className="relative flex sm:items-start sm:justify-center sm:p-10 sm:pt-14 sm:space-x-6 app"
+    >
+
+
     <button
-      onClick={ e => (e.currentTarget as HTMLButtonElement)?.nextElementSibling?.classList.toggle("hidden") }
-      className="absolute top-0 right-0 z-50 block float-right p-3 m-3 bg-green-100 rounded-full sm:hidden"
+      id="burger-menu"
+      onClick={ toggleNavigation }
+      className="fixed top-0 right-0 z-50 block float-right p-3 m-3 bg-green-100 rounded-full sm:hidden"
       >
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -138,7 +154,7 @@ const App:FunctionComponent<AppProps> = observer( ({ explorer }) =>
     </button>
 
 
-    <nav className="absolute z-30 hidden w-48 px-2 py-3 bg-white shadow-xl select-none ring-gray-300 ring-1 sm:ring-0 sm:block sm:shadow-md right-6 top-16 sm:static rounded-md">
+    <nav className="fixed z-30 hidden w-48 px-2 py-3 text-lg bg-white shadow-xl select-none sm:text-base ring-gray-300 ring-1 sm:ring-0 sm:block sm:shadow-md right-6 top-16 sm:static rounded-md">
       <h2 className="hidden pl-1 font-bold sm:block">{explorer.label}</h2>
 
         <AriaTree>

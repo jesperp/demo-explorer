@@ -11,7 +11,7 @@ const Content = observer(({explorer}) => {
         return /* @__PURE__ */ h("div", {
           className: "relative"
         }, /* @__PURE__ */ h("div", {
-          className: "cursor-auto opacity-60 p-28"
+          className: "p-16 cursor-auto opacity-60 sm:p-28"
         }, /* @__PURE__ */ h("svg", {
           fill: "none",
           viewBox: "0 0 24 24",
